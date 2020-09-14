@@ -27,11 +27,11 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ * The scope of count in counter 1 is local to the function counterMaker and the scope for count in counter 2 is global.
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ * counter 1 uses a closure because it has a function nested inside of it.
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ * counter1 would be preferable if we want different instances of counts to keep track of, counter2 is better in a scenario where we only want to manipulate a total value.
 */
 
 // counter1 code
@@ -59,7 +59,7 @@ Write a function called `inning` that generates a random number of points that a
 function inning(/*Code Here*/){
 
     /*Code Here*/
-
+    return Math.floor(Math.random() * 3);
 }
 
 /* Task 3: finalScore()
@@ -76,10 +76,15 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(inning, numInnings){
 
   /*Code Here*/
-
+  const scoreObject = ({
+    "Home": for (let i = 0; i<numInnings; i++) {
+      
+    },
+    "Away":
+  })
 }
 
 /* Task 4: 
