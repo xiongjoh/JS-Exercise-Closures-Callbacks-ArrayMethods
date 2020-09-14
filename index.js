@@ -129,6 +129,7 @@ Final Score: awayTeam - homeTeam */
 
 function scoreboard(getInningScore, numInnings) {
   /* CODE HERE */
+
   let homeInningScore = getInningScore;
   let awayInningScore = getInningScore;
   let homeScore = 0;

@@ -44,6 +44,7 @@ Find the file `index.js` and complete the tasks until your tests are passing.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+Closures are functions that have a function declared in them. The inner function has access to the parent functions' variables but the opposite is not true.
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -65,8 +66,10 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+Closure is used when it is declared in dansRoll and zoesRoll, I can tell becuase the function personalDice has an inner function that is returned.
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
-c. What is the lexical scope of `newRoll`? 
+calling dansRoll will always give Dan's name back and what could change is the dice roll.
+c. What is the lexical scope of `newRoll`? The scope of newRoll is within the inner function of personalDice()
 
 ### Task 3 - Stretch Goals
 
