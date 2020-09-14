@@ -2,44 +2,43 @@
 
 /**
  * ### Challenge `processFirstItem`
- * 
+ *
  * @instructions
  * Implement a higher-order function called `processFirstItem`.
  * It takes two arguments:
  * @param stringList an array of strings.
  * @param callback function that takes a string as its argument.
  * @returns the result of invoking `callback` with the FIRST element in `stringList`.
- * 
+ *
  * Example of usage of this higher-order function:
  * Invoking `processFirstItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'foofoo'.
-*/
+ */
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+  return callback(stringList[0]);
 }
 
 // ⭐️ Example Challenge END ⭐️
-
 
 ///// M V P ///////
 
 /* Task 1: `counterMaker`
  * Study the code for counter1 and counter2. Answer the questions below.
- * 
+ *
  * 1. What is the difference between counter1 and counter2?
  * The scope of count in counter 1 is local to the function counterMaker and the scope for count in counter 2 is global.
  * 2. Which of the two uses a closure? How can you tell?
  * counter 1 uses a closure because it has a function nested inside of it.
- * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?
  * counter1 would be preferable if we want different instances of counts to keep track of, counter2 is better in a scenario where we only want to manipulate a total value.
-*/
+ */
 
 // counter1 code
 function counterMaker() {
   let count = 0;
   return function counter() {
     count++;
-  }
+  };
 }
 
 const counter1 = counterMaker();
@@ -51,19 +50,16 @@ function counter2() {
   return count++;
 }
 
-
 /* Task 2: inning() 
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-    return function randomNumber () 
-    {
-      let randNum = 0;
-      return randNum = randNum + Math.floor(Math.random() * 3);
-    }
+function inning(/*Code Here*/) {
+  /*Code Here*/
+  return function randomNumber() {
+    let randNum = 0;
+    return randNum = randNum + Math.floor(Math.random() * 3);
+  };
 }
 
 let innningScore = inning();
@@ -80,13 +76,12 @@ finalScore(inning, 9) might return:
   "Away": 5,
 }
 
-*/ 
+*/
 
-function finalScore(inning, numInnings){
-
+function finalScore(inning, numInnings) {
   /*Code Here*/
-  let homeInningScore = inning;
-  let awayInningScore = inning;
+  let homeInningScore = inning();
+  let awayInningScore = inning();
   let homeScore = 0;
   let awayScore = 0;
 
@@ -95,15 +90,15 @@ function finalScore(inning, numInnings){
     awayScore = awayScore + awayInningScore();
   }
 
-  const scoreObject = ({
-    "Home": homeScore,
-    "Away": awayScore
-  })
+  const scoreObject = {
+    Home: homeScore,
+    Away: awayScore,
+  };
 
   return scoreObject;
 }
 
-console.log(finalScore(inning(),9));
+console.log(finalScore(inning, 9));
 
 /* Task 4: 
 
@@ -127,38 +122,28 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(getInningScore, numInnings) {
+function scoreboard(getInningScore, inning, numInnings) {
   /* CODE HERE */
-
-  let homeInningScore = getInningScore;
-  let awayInningScore = getInningScore;
   let homeScore = 0;
   let awayScore = 0;
-  let tempScoreH = 0;
-  let tempScoreA = 0;
+  let tempObject = {};
 
   for (let i = 0; i < numInnings; i++) {
-    tempScoreH = homeInningScore();
-    tempScoreA = awayInningScore();
-    homeScore = homeScore + tempScoreH;
-    awayScore = awayScore + tempScoreA;
+    tempObject = getInningScore(inning, 1);
+    homeScore = homeScore + tempObject.Home;
+    awayScore = awayScore + tempObject.Away;
     if (i === 0) {
-      console.log(`${i+1}st inning: ${tempScoreA} - ${tempScoreH}`)
-    }
-    else if (i === 1) {
-      console.log(`${i+1}nd inning: ${tempScoreA} - ${tempScoreH}`)
-    }
-    else if (i === 2) {
-      console.log(`${i+1}rd inning: ${tempScoreA} - ${tempScoreH}`)
-    }
-    else {
-      console.log(`${i+1}th inning: ${tempScoreA} - ${tempScoreH}`)
+      console.log(`${i + 1}st inning: ${tempObject.Away} - ${tempObject.Home}`);
+    } else if (i === 1) {
+      console.log(`${i + 1}nd inning: ${tempObject.Away} - ${tempObject.Home}`);
+    } else if (i === 2) {
+      console.log(`${i + 1}rd inning: ${tempObject.Away} - ${tempObject.Home}`);
+    } else {
+      console.log(`${i + 1}th inning: ${tempObject.Away} - ${tempObject.Home}`);
     }
   }
 
-  return console.log(`\nFinal Score: ${awayScore} - ${homeScore}`)
+  return `\nFinal Score: ${awayScore} - ${homeScore}`;
 }
 
-scoreboard(inning(), 9);
-
-
+console.log(scoreboard(finalScore, inning, 9));
