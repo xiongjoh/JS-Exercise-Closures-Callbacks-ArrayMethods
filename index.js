@@ -86,8 +86,8 @@ function finalScore(inning, numInnings) {
   let awayScore = 0;
 
   for (let i = 0; i < numInnings; i++) {
-    homeScore = homeScore + homeInningScore();
-    awayScore = awayScore + awayInningScore();
+    homeScore += homeInningScore();
+    awayScore += awayInningScore();
   }
 
   const scoreObject = {
@@ -130,8 +130,8 @@ function scoreboard(getInningScore, inning, numInnings) {
 
   for (let i = 0; i < numInnings; i++) {
     tempObject = getInningScore(inning, 1);
-    homeScore = homeScore + tempObject.Home;
-    awayScore = awayScore + tempObject.Away;
+    homeScore += tempObject.Home;
+    awayScore += tempObject.Away;
     if (i === 0) {
       console.log(`${i + 1}st inning: ${tempObject.Away} - ${tempObject.Home}`);
     } else if (i === 1) {
